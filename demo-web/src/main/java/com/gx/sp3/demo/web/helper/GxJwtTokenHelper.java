@@ -27,7 +27,6 @@ import java.util.Map;
  * HMACSHA512(base64UrlEncode(header) + "." +base64UrlEncode(payload),secret)
  * Created by macro on 2018/4/26.
  */
-@Component
 public class GxJwtTokenHelper {
     private static final Logger LOGGER = LoggerFactory.getLogger(GxJwtTokenHelper.class);
 
@@ -48,6 +47,8 @@ public class GxJwtTokenHelper {
      * 根据负责生成JWT的token
      */
     private String generateToken(Map<String, Object> claims) {
+        System.out.printf("!!! GxJwtTokenHelper#generateToken HS512=%s, secret=%s\n", SignatureAlgorithm.HS512, secret);
+
         return Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(generateExpirationDate())

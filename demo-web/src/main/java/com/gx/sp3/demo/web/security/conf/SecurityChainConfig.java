@@ -1,5 +1,7 @@
 package com.gx.sp3.demo.web.security.conf;
 
+import com.gx.sp3.demo.web.security.component.GxAuthSuccessHandler;
+import com.gx.sp3.demo.web.security.component.GxJwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,9 +26,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @EnableWebSecurity
 public class SecurityChainConfig {
     @Autowired
-    private IgnoreUrlsConfig ignoreUrlsConfig;
-
-    @Autowired
     private AccessDeniedHandler gxAccessDeniedHandler;
 
     @Autowired
@@ -36,12 +35,16 @@ public class SecurityChainConfig {
     private LogoutSuccessHandler gxLogoutSuccessHandler;
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserDetailsService gxUserDetailsService;
 
     @Autowired
     private AuthenticationSuccessHandler gxAuthSuccessHandler;
 
-    private OncePerRequestFilter gxJwtAuthenticationTokenFilter;
+    @Autowired
+    private IgnoreUrlsConfig ignoreUrlsConfig;
+
+    @Autowired
+    private GxJwtAuthenticationTokenFilter gxJwtAuthenticationTokenFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -81,7 +84,7 @@ public class SecurityChainConfig {
         }
 
         // token简单验证
-        // httpSecurity.addFilterBefore(gxJwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(gxJwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         // 配置授权处理，授权管理器可以配置多个
         httpSecurity.authorizeRequests()

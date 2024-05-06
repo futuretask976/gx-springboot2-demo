@@ -1,5 +1,6 @@
 package com.gx.sp3.demo.web.security.conf;
 
+import com.gx.sp3.demo.web.helper.GxJwtTokenHelper;
 import com.gx.sp3.demo.web.security.component.*;
 import com.gx.sp3.demo.web.security.encoder.MD5PasswordEncoder;
 import com.gx.sp3.demo.web.security.service.GxUserDetailService;
@@ -25,9 +26,9 @@ public class SecurityBeanConfig {
     }
 
     @Bean
-    public IgnoreUrlsConfig ignoreUrlsConfig() {
-        System.out.printf("!!! SecurityBaseConfig#ignoreUrlsConfig entering\n");
-        return new IgnoreUrlsConfig();
+    public UserDetailsService gxUserDetailService() {
+        System.out.printf("!!! SecurityBaseConfig#userDetailsService entering\n");
+        return new GxUserDetailService();
     }
 
     @Bean
@@ -43,14 +44,19 @@ public class SecurityBeanConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        System.out.printf("!!! SecurityBaseConfig#userDetailsService entering\n");
-        return new GxUserDetailService();
+    public IgnoreUrlsConfig ignoreUrlsConfig() {
+        System.out.printf("!!! SecurityBaseConfig#ignoreUrlsConfig entering\n");
+        return new IgnoreUrlsConfig();
     }
 
     @Bean
-    public OncePerRequestFilter jwtAuthenticationTokenFilter() {
+    public GxJwtAuthenticationTokenFilter gxJwtAuthenticationTokenFilter() {
         return new GxJwtAuthenticationTokenFilter();
+    }
+
+    @Bean
+    public GxJwtTokenHelper gxJwtTokenHelper() {
+        return new GxJwtTokenHelper();
     }
 
     /**
