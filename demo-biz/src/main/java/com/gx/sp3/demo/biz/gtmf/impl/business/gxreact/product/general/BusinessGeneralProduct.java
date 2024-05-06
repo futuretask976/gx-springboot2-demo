@@ -5,10 +5,8 @@ import com.gx.sp3.demo.biz.gtmf.impl.business.gxreact.ext.base.BaseGxBusinessTem
 import com.gx.sp3.demo.biz.gtmf.impl.business.gxreact.ext.customized.GxBusinessRenderBlogPageExtPoints;
 import com.gx.sp3.demo.biz.gtmf.impl.business.gxreact.model.BlogBlockDO;
 import com.gx.sp3.demo.biz.gtmf.impl.business.gxreact.model.BlogPageDO;
-import com.gx.sp3.demo.dao.accessor.HotelGuestMapperAccessor;
 import com.gx.sp3.demo.gtmf.annotation.BusinessDef;
 import com.gx.sp3.demo.gtmf.exception.GTmfException;
-import jakarta.annotation.Resource;
 import org.assertj.core.util.Lists;
 
 import java.util.Date;

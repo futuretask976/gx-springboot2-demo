@@ -4,10 +4,11 @@ import com.gx.sp3.demo.api.model.BlogPageDTO;
 import com.gx.sp3.demo.api.request.RenderBlogPageRequest;
 import com.gx.sp3.demo.api.result.GxResult;
 import com.gx.sp3.demo.api.service.RenderBlogPageService;
-import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/gtmf")

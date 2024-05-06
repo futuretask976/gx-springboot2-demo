@@ -2,8 +2,8 @@ package com.gx.sp3.demo.gtmf.extension;
 
 import com.gx.sp3.demo.gtmf.manager.BusinessExtensionManager;
 import com.gx.sp3.demo.gtmf.manager.ExtensionExecutable;
-import jakarta.annotation.Resource;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;

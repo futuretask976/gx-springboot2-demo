@@ -1,5 +1,6 @@
 com/gx/sp3/demo/web/security/encoder/MD5PasswordEncoder.class
 com/gx/sp3/demo/web/controller/langtuo/MachineTeaToppingController.class
+com/gx/sp3/demo/web/util/GxJwtTokenUtils.class
 com/gx/sp3/demo/web/security/conf/IgnoreUrlsConfig.class
 com/gx/sp3/demo/web/security/component/GxAuthSuccessHandler.class
 com/gx/sp3/demo/web/controller/langtuo/MachineController.class
@@ -20,4 +21,5 @@ com/gx/sp3/demo/web/GxSpringBoot3DemoServletInitializer.class
 com/gx/sp3/demo/web/controller/langtuo/MachineToppingController.class
 com/gx/sp3/demo/web/controller/GtmfRestfulController.class
 com/gx/sp3/demo/web/security/model/GxUserDetails$1.class
+com/gx/sp3/demo/web/security/component/GxJwtAuthenticationTokenFilter.class
 com/gx/sp3/demo/web/security/model/GxUserDetails.class

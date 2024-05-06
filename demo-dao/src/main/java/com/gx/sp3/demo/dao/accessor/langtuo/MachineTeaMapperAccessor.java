@@ -2,9 +2,9 @@ package com.gx.sp3.demo.dao.accessor.langtuo;
 
 import com.gx.sp3.demo.dao.mapper.langtuo.MachineTeaMapper;
 import com.gx.sp3.demo.dao.pojo.langtuo.MachineTeaPojo;
-import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Component

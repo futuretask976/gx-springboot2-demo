@@ -3,7 +3,6 @@ package com.gx.sp3.demo.biz.gtmf.impl.business.gxreact.ext;
 import com.gx.sp3.demo.biz.gtmf.impl.business.gxreact.context.RenderBlogPageContext;
 import com.gx.sp3.demo.gtmf.extension.ExecuteExtRequest;
 import com.gx.sp3.demo.gtmf.param.RequestSource;
-import jakarta.annotation.Nonnull;
 import lombok.Data;
 
 import java.util.Set;
@@ -21,7 +20,6 @@ public class GxExecuteExtRequest extends ExecuteExtRequest {
     /**
      *
      */
-    @Nonnull
     private Set<String> bizCodes;
 
     /**

@@ -3,11 +3,12 @@ package com.gx.sp3.demo.web.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.gx.sp3.demo.dao.accessor.HotelGuestMapperAccessor;
 import com.gx.sp3.demo.dao.pojo.HotelGuestPojo;
-import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/database")

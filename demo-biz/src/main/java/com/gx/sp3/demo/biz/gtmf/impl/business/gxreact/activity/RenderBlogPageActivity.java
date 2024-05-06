@@ -7,8 +7,8 @@ import com.gx.sp3.demo.biz.gtmf.impl.business.gxreact.model.BlogBlockDO;
 import com.gx.sp3.demo.biz.gtmf.impl.business.gxreact.model.BlogPageDO;
 import com.gx.sp3.demo.biz.gtmf.impl.business.gxreact.transfer.RequestTransfer;
 import com.gx.sp3.demo.gtmf.annotation.Activity;
-import jakarta.annotation.Resource;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Activity

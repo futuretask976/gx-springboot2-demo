@@ -1,7 +1,6 @@
 package com.gx.sp3.demo.gtmf.extension;
 
 import com.gx.sp3.demo.gtmf.param.RequestSource;
-import jakarta.annotation.Nonnull;
 import lombok.Data;
 
 import java.util.Set;
@@ -11,7 +10,6 @@ public abstract class ExecuteExtRequest {
     /**
      *
      */
-    @Nonnull
     protected Set<String> bizCodes;
 
     /**

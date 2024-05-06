@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class MD5PasswordEncoder implements PasswordEncoder {
-    private static final String salt = "gx-springboot3-demo";
+    private static final String salt = "gx-springboot2-demo";
 
     @Override
     public String encode(CharSequence rawPassword) {

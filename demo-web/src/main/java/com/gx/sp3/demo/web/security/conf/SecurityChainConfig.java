@@ -1,28 +1,20 @@
 package com.gx.sp3.demo.web.security.conf;
 
-import com.gx.sp3.demo.web.security.component.GxLogoutSuccessHandler;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-
-import java.io.IOException;
-import java.util.stream.Collectors;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
  * SpringSecurity相关配置，仅用于配置SecurityFilterChain
@@ -49,47 +41,59 @@ public class SecurityChainConfig {
     @Autowired
     private AuthenticationSuccessHandler gxAuthSuccessHandler;
 
+    private OncePerRequestFilter gxJwtAuthenticationTokenFilter;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        // We are disabling CSRF so that our forms don't complain about a CSRF token.
-        // Beware that it can create a security vulnerability
-        return httpSecurity.csrf(AbstractHttpConfigurer::disable)
-                // Here we are configuring our login form
-                .formLogin(formLogin -> {
-                        formLogin
-                                .loginPage("/login") // Login page will be accessed through this endpoint. We will create a controller method for this.
-                                .loginProcessingUrl("/login-processing") // This endpoint will be mapped internally. This URL will be our Login form post action.
-                                .usernameParameter("username")
-                                .passwordParameter("password")
-                                .permitAll() // We re permitting all for login page
-                                .successHandler(gxAuthSuccessHandler) // .defaultSuccessUrl("/welcome") // If the login is successful, user will be redirected to this URL.
-                                .failureUrl("/login?error=true"); // If the user fails to login, application will redirect the user to this endpoint
-                })
-                .authorizeHttpRequests(authorize ->
-                        authorize
-                                // We are permitting all static resources to be accessed publicly
-                                .requestMatchers(ignoreUrlsConfig.getUrls().stream().toArray(String[]::new)).permitAll()
-                                // We are restricting endpoints for individual roles.
-                                // Only users with allowed roles will be able to access individual endpoints.
-                                .requestMatchers("/test002").hasRole("USER")
-                                .requestMatchers("/test003").hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/test004").hasAnyRole("ADMIN")
-                                // Following line denotes that all requests must be authenticated.
-                                // Hence, once a request comes to our application, we will check if the user is authenticated or not.
-                                .anyRequest().authenticated()
-                )
-                .logout(logout ->
-                        logout
-                                .logoutUrl("/logout")
-                                .logoutSuccessHandler(gxLogoutSuccessHandler)
-                                //.logoutSuccessUrl("/bye")
-                                .clearAuthentication(true)
-                                .invalidateHttpSession(true)
-                                .deleteCookies("JSESSIONID") // 如果你使用cookie来传递session id
-                )
-                .exceptionHandling(customizer -> customizer
-                        .authenticationEntryPoint(gxAuthenticationEntryPoint)
-                        .accessDeniedHandler(gxAccessDeniedHandler))
-                .build();
+        httpSecurity.csrf().disable();
+        httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        // 允许跨域请求的OPTIONS请求
+        httpSecurity.authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS).permitAll()
+                .anyRequest().authenticated();
+
+        // 不需要保护的资源路径允许访问
+        for (String url : ignoreUrlsConfig.getUrls()) {
+            httpSecurity.authorizeRequests().antMatchers(url).permitAll();
+        }
+
+        // token简单验证
+        httpSecurity.addFilterBefore(gxJwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+
+        // 配置授权处理，授权管理器可以配置多个
+        httpSecurity.authorizeRequests()
+                .antMatchers("/test002").hasRole("USER")
+                .antMatchers("/test003").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/test004").hasAnyRole("ADMIN")
+                .anyRequest().authenticated();
+
+        // 异常处理
+        httpSecurity.exceptionHandling()
+                .accessDeniedHandler(gxAccessDeniedHandler)
+                .authenticationEntryPoint(gxAuthenticationEntryPoint);
+
+        httpSecurity.formLogin(formLogin -> {
+            formLogin
+                    .loginPage("/login") // Login page will be accessed through this endpoint. We will create a controller method for this.
+                    .loginProcessingUrl("/login-processing") // This endpoint will be mapped internally. This URL will be our Login form post action.
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .permitAll() // We re permitting all for login page
+                    .successHandler(gxAuthSuccessHandler) // .defaultSuccessUrl("/welcome") // If the login is successful, user will be redirected to this URL.
+                    .failureUrl("/login?error=true"); // If the user fails to login, application will redirect the user to this endpoint
+        });
+
+        httpSecurity.logout(logout ->
+                logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessHandler(gxLogoutSuccessHandler)
+                        //.logoutSuccessUrl("/bye")
+                        .clearAuthentication(true)
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID") // 如果你使用cookie来传递session id
+        );
+
+        return httpSecurity.build();
     }
 }

@@ -15,7 +15,6 @@ import com.gx.sp3.demo.gtmf.metadata.ExtensionDefMetadata;
 import com.gx.sp3.demo.gtmf.metadata.ExtensionMetadata;
 import com.gx.sp3.demo.gtmf.monitor.CommonBizMonitor;
 import com.gx.sp3.demo.gtmf.scan.ScanClassUtils;
-import jakarta.annotation.Nonnull;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ClassUtils;
@@ -220,7 +219,6 @@ public class BusinessExtensionManager implements ExtensionExecutable, Applicatio
                 .collect(Collectors.toSet());
     }
 
-    @Nonnull
     @Override
     public <T, R> List<ExecuteExtResult<R>> executeAllGetNonNull(ExecuteExtRequest req, Class<T> extension,
             Function<T, R> func) {
@@ -254,7 +252,6 @@ public class BusinessExtensionManager implements ExtensionExecutable, Applicatio
         return results;
     }
 
-    @Nonnull
     @Override
     public <T, R> Optional<ExecuteExtResult<R>> executeUntilNonNull(ExecuteExtRequest req, Class<T> extension,
             Function<T, R> func) {

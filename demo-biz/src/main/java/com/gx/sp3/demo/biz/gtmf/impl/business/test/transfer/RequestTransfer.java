@@ -7,9 +7,9 @@ import com.gx.sp3.demo.gtmf.consts.ClientTypeEnum;
 import com.gx.sp3.demo.gtmf.manager.BusinessExtensionManager;
 import com.gx.sp3.demo.gtmf.param.RequestSource;
 import com.gx.sp3.demo.gtmf.param.UserAgent;
-import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Set;
 
 @Component("com.gx.biz.gtmf.impl.business.test.transfer.RequestTransfer")

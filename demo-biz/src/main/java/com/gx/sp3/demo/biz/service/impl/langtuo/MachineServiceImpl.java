@@ -5,9 +5,9 @@ import com.gx.sp3.demo.api.result.GxResult;
 import com.gx.sp3.demo.api.service.langtuo.MachineService;
 import com.gx.sp3.demo.dao.accessor.langtuo.MachineMapperAccessor;
 import com.gx.sp3.demo.dao.pojo.langtuo.MachinePojo;
-import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -8,7 +8,8 @@ import com.gx.sp3.demo.biz.gtmf.impl.business.test.model.domain.SubmitDO;
 import com.gx.sp3.demo.biz.gtmf.impl.business.test.transfer.RequestTransfer;
 import com.gx.sp3.demo.biz.gtmf.impl.business.test.transfer.SubmitRequestDTO;
 import com.gx.sp3.demo.gtmf.annotation.Activity;
-import jakarta.annotation.Resource;
+
+import javax.annotation.Resource;
 
 @Activity
 public class TestSubmitBlockActivity {

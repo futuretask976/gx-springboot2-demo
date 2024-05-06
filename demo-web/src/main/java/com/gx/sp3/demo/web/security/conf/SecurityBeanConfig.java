@@ -1,9 +1,6 @@
 package com.gx.sp3.demo.web.security.conf;
 
-import com.gx.sp3.demo.web.security.component.GxAccessDeniedHandler;
-import com.gx.sp3.demo.web.security.component.GxAuthSuccessHandler;
-import com.gx.sp3.demo.web.security.component.GxAuthenticationEntryPoint;
-import com.gx.sp3.demo.web.security.component.GxLogoutSuccessHandler;
+import com.gx.sp3.demo.web.security.component.*;
 import com.gx.sp3.demo.web.security.encoder.MD5PasswordEncoder;
 import com.gx.sp3.demo.web.security.service.GxUserDetailService;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +14,7 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 @Configuration
 public class SecurityBeanConfig {
@@ -48,6 +46,11 @@ public class SecurityBeanConfig {
     public UserDetailsService userDetailsService() {
         System.out.printf("!!! SecurityBaseConfig#userDetailsService entering\n");
         return new GxUserDetailService();
+    }
+
+    @Bean
+    public OncePerRequestFilter jwtAuthenticationTokenFilter() {
+        return new GxJwtAuthenticationTokenFilter();
     }
 
     /**

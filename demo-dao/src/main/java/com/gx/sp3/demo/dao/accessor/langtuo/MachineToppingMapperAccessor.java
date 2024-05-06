@@ -2,9 +2,9 @@ package com.gx.sp3.demo.dao.accessor.langtuo;
 
 import com.gx.sp3.demo.dao.mapper.langtuo.MachineToppingMapper;
 import com.gx.sp3.demo.dao.pojo.langtuo.MachineToppingPojo;
-import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Component
