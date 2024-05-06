@@ -7,10 +7,10 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * 当前类用于在Tomcat中启动
  * @author miya
  */
-public class GxSpringBoot3DemoServletInitializer extends SpringBootServletInitializer {
+public class GxSpringBoot2DemoServletInitializer extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         System.out.printf("!!! GxSpringBoot3DemoServletInitializer#configure entering\n");
-        return builder.sources(GxSpringBoot3DemoApplication.class);
+        return builder.sources(GxSpringBoot2DemoApplication.class);
     }
 }

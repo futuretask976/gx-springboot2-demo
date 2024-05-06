@@ -1,14 +1,16 @@
-package com.gx.sp3.demo.web.util;
+package com.gx.sp3.demo.web.helper;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Copy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -25,8 +27,9 @@ import java.util.Map;
  * HMACSHA512(base64UrlEncode(header) + "." +base64UrlEncode(payload),secret)
  * Created by macro on 2018/4/26.
  */
-public class GxJwtTokenUtils {
-    private static final Logger LOGGER = LoggerFactory.getLogger(GxJwtTokenUtils.class);
+@Component
+public class GxJwtTokenHelper {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GxJwtTokenHelper.class);
 
     private static final String CLAIM_KEY_USERNAME = "sub";
 
@@ -139,16 +142,16 @@ public class GxJwtTokenUtils {
         if(StrUtil.isEmpty(token)){
             return null;
         }
-        //token校验不通过
+        // token校验不通过
         Claims claims = getClaimsFromToken(token);
         if(claims==null){
             return null;
         }
-        //如果token已经过期，不支持刷新
+        // 如果token已经过期，不支持刷新
         if(isTokenExpired(token)){
             return null;
         }
-        //如果token在30分钟之内刚刷新过，返回原token
+        // 如果token在30分钟之内刚刷新过，返回原token
         if(tokenRefreshJustBefore(token,30*60)){
             return token;
         }else{

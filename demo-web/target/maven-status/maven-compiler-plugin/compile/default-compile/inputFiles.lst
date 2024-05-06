@@ -1,12 +1,11 @@
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/security/conf/IgnoreUrlsConfig.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/security/model/GxUserDetails.java
+/Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/GxSpringBoot2DemoApplication.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/controller/langtuo/MachineTeaController.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/controller/GtmfRestfulController.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/controller/TestRestfulController.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/controller/langtuo/MachineTeaToppingController.java
-/Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/util/GxJwtTokenUtils.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/security/component/GxAuthSuccessHandler.java
-/Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/GxSpringBoot3DemoServletInitializer.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/security/component/GxJwtAuthenticationTokenFilter.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/security/conf/SecurityChainConfig.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/security/component/GxAccessDeniedHandler.java
@@ -16,8 +15,9 @@
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/security/service/GxUserDetailService.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/controller/langtuo/MachineTeaOrderController.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/controller/DatabaseRestfulController.java
+/Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/helper/GxJwtTokenHelper.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/security/component/GxAuthenticationEntryPoint.java
-/Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/GxSpringBoot3DemoApplication.java
+/Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/GxSpringBoot2DemoServletInitializer.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/security/encoder/MD5PasswordEncoder.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/security/component/GxLogoutSuccessHandler.java
 /Users/Miya/JavaSpace/gx-springboot2-demo/demo-web/src/main/java/com/gx/sp3/demo/web/controller/ThymeleafController.java

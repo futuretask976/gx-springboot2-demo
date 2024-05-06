@@ -46,12 +46,34 @@ public class SecurityChainConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable();
-        httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+
+        // 登录设置
+        httpSecurity.formLogin(formLogin -> {
+            formLogin
+                    .loginPage("/login") // Login page will be accessed through this endpoint. We will create a controller method for this.
+                    .loginProcessingUrl("/login-processing") // This endpoint will be mapped internally. This URL will be our Login form post action.
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .permitAll() // We re permitting all for login page
+                    .successHandler(gxAuthSuccessHandler) // .defaultSuccessUrl("/welcome") // If the login is successful, user will be redirected to this URL.
+                    .failureUrl("/login?error=true"); // If the user fails to login, application will redirect the user to this endpoint
+        });
+
+        // 登出设置
+        httpSecurity.logout(logout ->
+                logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessHandler(gxLogoutSuccessHandler)
+                        //.logoutSuccessUrl("/bye")
+                        .clearAuthentication(true)
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID") // 如果你使用cookie来传递session id
+        );
 
         // 允许跨域请求的OPTIONS请求
         httpSecurity.authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .anyRequest().authenticated();
+                .antMatchers(HttpMethod.OPTIONS).permitAll();
 
         // 不需要保护的资源路径允许访问
         for (String url : ignoreUrlsConfig.getUrls()) {
@@ -59,7 +81,7 @@ public class SecurityChainConfig {
         }
 
         // token简单验证
-        httpSecurity.addFilterBefore(gxJwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        // httpSecurity.addFilterBefore(gxJwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         // 配置授权处理，授权管理器可以配置多个
         httpSecurity.authorizeRequests()
@@ -72,27 +94,6 @@ public class SecurityChainConfig {
         httpSecurity.exceptionHandling()
                 .accessDeniedHandler(gxAccessDeniedHandler)
                 .authenticationEntryPoint(gxAuthenticationEntryPoint);
-
-        httpSecurity.formLogin(formLogin -> {
-            formLogin
-                    .loginPage("/login") // Login page will be accessed through this endpoint. We will create a controller method for this.
-                    .loginProcessingUrl("/login-processing") // This endpoint will be mapped internally. This URL will be our Login form post action.
-                    .usernameParameter("username")
-                    .passwordParameter("password")
-                    .permitAll() // We re permitting all for login page
-                    .successHandler(gxAuthSuccessHandler) // .defaultSuccessUrl("/welcome") // If the login is successful, user will be redirected to this URL.
-                    .failureUrl("/login?error=true"); // If the user fails to login, application will redirect the user to this endpoint
-        });
-
-        httpSecurity.logout(logout ->
-                logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessHandler(gxLogoutSuccessHandler)
-                        //.logoutSuccessUrl("/bye")
-                        .clearAuthentication(true)
-                        .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID") // 如果你使用cookie来传递session id
-        );
 
         return httpSecurity.build();
     }

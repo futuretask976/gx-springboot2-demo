@@ -1,6 +1,6 @@
 package com.gx.sp3.demo.web.security.component;
 
-import com.gx.sp3.demo.web.util.GxJwtTokenUtils;
+import com.gx.sp3.demo.web.helper.GxJwtTokenHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class GxJwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private UserDetailsService userDetailsService;
 
     @Autowired
-    private GxJwtTokenUtils gxJwtTokenUtils;
+    private GxJwtTokenHelper gxJwtTokenHelper;
 
     @Value("${jwt.tokenHeader}")
     private String tokenHeader;
@@ -43,10 +43,10 @@ public class GxJwtAuthenticationTokenFilter extends OncePerRequestFilter {
         String authHeader = request.getHeader(this.tokenHeader);
         if (authHeader != null && authHeader.startsWith(this.tokenHead)) {
             String authToken = authHeader.substring(this.tokenHead.length());// The part after "Bearer "
-            String username = gxJwtTokenUtils.getUserNameFromToken(authToken);
+            String username = gxJwtTokenHelper.getUserNameFromToken(authToken);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-                if (gxJwtTokenUtils.validateToken(authToken, userDetails)) {
+                if (gxJwtTokenHelper.validateToken(authToken, userDetails)) {
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authentication);
