@@ -22,8 +22,8 @@ public class LangTuoTestor {
 //        insertTestRec4MachineTeaTopping();
 //        selectTestRec4MachineTeaTopping();
 
-        insertTestRec4MachineTeaOrder();
-        selectTestRec4MachineTeaOrder();
+//        insertTestRec4MachineTeaOrder();
+//        selectTestRec4MachineTeaOrder();
 
 
 //        selectSequenceDemo();

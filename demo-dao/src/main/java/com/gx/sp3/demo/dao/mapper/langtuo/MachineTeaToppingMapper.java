@@ -1,5 +1,6 @@
 package com.gx.sp3.demo.dao.mapper.langtuo;
 
+import com.gx.sp3.demo.dao.annotation.GxTableShard;
 import com.gx.sp3.demo.dao.annotation.MySQLScan;
 import com.gx.sp3.demo.dao.pojo.langtuo.MachineTeaToppingPojo;
 import org.apache.ibatis.annotations.Mapper;
