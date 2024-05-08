@@ -11,19 +11,33 @@ import java.util.List;
 public class LangTuoTestor {
     public static void main(String args[]) {
 //        insertTestRec4Machine();
-        selectTestRec4Machine();
+//        selectTestRec4Machine();
 
 //        insertTestRec4MachineTea();
-        selectTestRec4MachineTea();
+//        selectTestRec4MachineTea();
 
 //        insertTestRec4MachineTopping();
-        selectTestRec4MachineTopping();
+//        selectTestRec4MachineTopping();
 
 //        insertTestRec4MachineTeaTopping();
-        selectTestRec4MachineTeaTopping();
+//        selectTestRec4MachineTeaTopping();
 
-//        insertTestRec4MachineTeaOrder();
+        insertTestRec4MachineTeaOrder();
         selectTestRec4MachineTeaOrder();
+
+
+//        selectSequenceDemo();
+    }
+
+    public static void selectSequenceDemo() {
+        SqlSession sqlSession = SqlSessionFactoryHelper.getSqlSession();
+        SequenceDemoMapper mapper = sqlSession.getMapper(SequenceDemoMapper.class);
+
+        long rtn = mapper.getNextSequenceValue();
+        System.out.printf("rtn: %s\n", rtn);
+
+        sqlSession.commit();
+        sqlSession.close();
     }
 
     public static void selectTestRec4MachineTeaOrder() {
