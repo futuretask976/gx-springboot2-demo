@@ -1,5 +1,6 @@
 package com.gx.sp3.demo.web.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * so here root path only need to be set as /, not /gx
  */
 @RestController
+@Slf4j
 public class TestRestfulController {
     /**
      * Access this method by http://localhost:8080/gxsp3demo/test001
@@ -16,6 +18,7 @@ public class TestRestfulController {
      */
     @GetMapping(value = "/test001")
     public String test001() {
+        log.info("~~~ TestRestfulController#test001 entering");
         try {
             System.out.println("!!! TestRestfulController#test001 entering");
             return "/test001 success";

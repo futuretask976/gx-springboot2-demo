@@ -22,6 +22,7 @@
         <maven-antrun.version>1.8</maven-antrun.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <logback.configurationFile>src/main/resources/logback.xml</logback.configurationFile>
     </properties>
 
     <modules>
@@ -122,18 +123,8 @@
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.16</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
                 <artifactId>jcl-over-slf4j</artifactId>
                 <version>1.7.16</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-                <version>99.0-does-not-exist</version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
