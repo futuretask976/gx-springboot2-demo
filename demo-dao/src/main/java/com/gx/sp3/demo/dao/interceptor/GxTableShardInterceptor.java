@@ -24,7 +24,6 @@ import java.util.Properties;
         method = "prepare",
         args = {Connection.class, Integer.class}
 )})
-@Component
 public class GxTableShardInterceptor implements Interceptor {
     /**
      *

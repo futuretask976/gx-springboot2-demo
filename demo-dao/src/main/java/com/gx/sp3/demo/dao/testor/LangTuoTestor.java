@@ -11,7 +11,7 @@ import java.util.List;
 public class LangTuoTestor {
     public static void main(String args[]) {
 //        insertTestRec4Machine();
-//        selectTestRec4Machine();
+        selectTestRec4Machine();
 
 //        insertTestRec4MachineTea();
 //        selectTestRec4MachineTea();
