@@ -21,11 +21,14 @@ com/gx/sp3/demo/dao/testor/LangTuoTestor$26.class
 com/gx/sp3/demo/dao/pojo/langtuo/MachineToppingPojo.class
 com/gx/sp3/demo/dao/testor/LangTuoTestor$31.class
 com/gx/sp3/demo/dao/testor/LangTuoTestor$11.class
+com/gx/sp3/demo/dao/accessor/langtuo/SequenceDemoAccesstor.class
 com/gx/sp3/demo/dao/testor/LangTuoTestor$14.class
 com/gx/sp3/demo/dao/helper/SqlSessionFactoryHelper.class
 com/gx/sp3/demo/dao/accessor/HotelGuestMapperAccessor.class
 com/gx/sp3/demo/dao/mapper/HotelGuestMapper.class
 com/gx/sp3/demo/dao/mapper/langtuo/MachineTeaMapper.class
+com/gx/sp3/demo/dao/mapper/langtuo/SequenceDemoMapper.class
+com/gx/sp3/demo/dao/annotation/GxTableShard.class
 com/gx/sp3/demo/dao/testor/LangTuoTestor$29.class
 com/gx/sp3/demo/dao/testor/LangTuoTestor$34.class
 com/gx/sp3/demo/dao/testor/LangTuoTestor$30.class
@@ -40,6 +43,7 @@ com/gx/sp3/demo/dao/testor/LangTuoTestor$37.class
 com/gx/sp3/demo/dao/accessor/langtuo/MachineTeaToppingMapperAccessor.class
 com/gx/sp3/demo/dao/testor/LangTuoTestor$4.class
 com/gx/sp3/demo/dao/testor/LangTuoTestor$33.class
+com/gx/sp3/demo/dao/interceptor/GxTableShardInterceptor.class
 com/gx/sp3/demo/dao/testor/LangTuoTestor$13.class
 com/gx/sp3/demo/dao/testor/LangTuoTestor$23.class
 com/gx/sp3/demo/dao/testor/LangTuoTestor$43.class
